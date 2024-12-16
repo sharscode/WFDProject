@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Organizer extends Model
 {
     use HasFactory;
+    // app/Models/Organizer.php
+
     protected $fillable = [
         'name',
         'facebook_link',
@@ -15,7 +17,6 @@ class Organizer extends Model
         'website_link',
         'description', 
     ];
-
     public function events()
     {
         return $this->hasMany(Event::class);

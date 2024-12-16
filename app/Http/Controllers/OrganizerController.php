@@ -20,23 +20,20 @@ class OrganizerController extends Controller
 
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'facebook_link' => 'nullable|url',
-                'x_link' => 'nullable|url',
-                'website_link' => 'nullable|url',
-                'description' => 'nullable|string',
-            ]);
 
-            Organizer::create($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'facebook_link' => 'nullable|url',
+            'x_link' => 'nullable|url',
+            'website_link' => 'nullable|url',
+            'description' => 'nullable|string',
+        ]);
 
-            return redirect()->route('organizers.index')->with('success', 'Organizer created successfully.');
+        Organizer::create($request->all());
 
-        } catch (\Exception $e) {
-            Log::error($e->getMessage()); // Log error message
-            return redirect()->back()->with('error', 'Failed to create organizer.'); 
-        }
+
+        return redirect()->route('organizers.index')->with('success', 'Organizer created successfully.');
+
     }
 
     public function show(Organizer $organizer)
@@ -58,9 +55,9 @@ class OrganizerController extends Controller
             'website_link' => 'nullable|url',
             'description' => 'nullable|string',
         ]);
-
+    
         $organizer->update($request->all());
-
+    
         return redirect()->route('organizers.index')->with('success', 'Organizer updated successfully.');
     }
 

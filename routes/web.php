@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizerController;
+use App\Http\Controllers\EventCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,8 @@ use App\Http\Controllers\OrganizerController;
 |
 */
 
-Route::get('/', [EventController::class, 'index'])->name('events.index');
+Route::get('/', [EventController::class, 'index'])->name('events.card'); // Route untuk card event
+Route::get('/events', [EventController::class, 'indexMaster'])->name('events.table'); // Route untuk tabel event
+Route::resource('events', EventController::class); 
 Route::resource('organizers', OrganizerController::class);
+Route::resource('event_categories', EventCategoryController::class);
