@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\EventCategoryController;
+use App\Http\Controllers\MasterEventController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,7 @@ use App\Http\Controllers\EventCategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', [EventController::class, 'index'])->name('events.card'); // Route untuk card event
-Route::get('/events', [EventController::class, 'indexMaster'])->name('events.table'); // Route untuk tabel event
-Route::resource('events', EventController::class); 
+Route::resource('events', MasterEventController::class); // Route untuk tabel event
 Route::resource('organizers', OrganizerController::class);
 Route::resource('event_categories', EventCategoryController::class);

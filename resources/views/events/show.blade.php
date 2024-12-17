@@ -15,7 +15,7 @@
                     <strong>About:</strong> {{ $event->description }}<br>
                     <strong>Tags:</strong> {{ $event->tags }}
                 </p>
-                <a href="{{ route('events.index') }}" class="btn btn-secondary">Back</a> 
+                <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>  
             </div>
         </div>
     </div>

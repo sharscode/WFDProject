@@ -6,7 +6,13 @@
     <title>WFD Project</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Custom CSS */
+        /* Di file CSS atau di tag <style> di view */
+        #eventTable tbody tr {
+            cursor: pointer;
+        }
+        #eventTable tbody tr:hover {
+            background-color: #f5f5f5; /* Atau warna lain yang sesuai */
+        }
     </style>
 </head>
 <body>
@@ -19,21 +25,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('events.card') }}">Events</a>  
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Master Data
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('organizers.index') }}">Master Organizer</a></li> 
-                            <li><a class="dropdown-item" href="{{ route('event_categories.index') }}">Master Event Category</a></li>
-                            <li><a class="dropdown-item" href="{{ route('events.table') }}">Master Event</a></li>  
-                        </ul>
-                    </li>
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('events.card') }}">Events</a> 
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Master Data
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ route('organizers.index') }}">Master Organizer</a></li>
+                        <li><a class="dropdown-item" href="{{ route('event_categories.index') }}">Master Event Category</a></li>
+                        <li><a class="dropdown-item" href="{{ route('events.index') }}">Master Event</a></li> 
                     </ul>
+                </li>
+            </ul>
                 </div>
             </div>
         </nav>
