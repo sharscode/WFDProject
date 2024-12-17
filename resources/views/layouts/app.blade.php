@@ -51,7 +51,7 @@
 
     <footer class="bg-light py-3 mt-5">
         <div class="container text-center">
-            <p>&copy; 2023 WFD Project</p>
+            <p>&copy; 2024 (Sharon) WFD Project</p>
         </div>
     </footer>
 
