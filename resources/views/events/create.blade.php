@@ -16,7 +16,7 @@
         @endif 
 
 
-        <form action="{{ route('events.store') }}" method="POST"> 
+        <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="image" class="form-label">Upload Image</label>
@@ -70,7 +70,13 @@
             </div>
             <div class="mb-3">
                 <label for="tags" class="form-label">Tags</label>
-                <input type="text" class="form-control" id="tags" name="tags" value="{{ old('tags') }}"> 
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="tags" 
+                    name="tags" 
+                    value="{{ old('tags') }}" 
+                    data-role="tagsinput">
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="{{ route('events.index') }}" class="btn btn-secondary">Cancel</a> 

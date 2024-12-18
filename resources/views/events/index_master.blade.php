@@ -28,7 +28,16 @@
                     <td>{{ $event->organizer->name }}</td>
                     <td>{{ $event->eventCategory->name }}</td> 
                     <td>{{ Str::limit($event->description, 100) }}</td>
-                    <td>{{ $event->tags }}</td>
+                    <td>
+                        @if ($event->tags)
+                            @foreach (explode(',', $event->tags) as $tag)
+                                <span class="badge bg-primary">{{ trim($tag) }}</span>
+                            @endforeach
+                        @else
+                            <span class="text-muted">No tags</span>
+                        @endif
+                    </td>
+
                     <td>
                         <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning btn-sm">Edit</a>  
                         <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline-block;">  
