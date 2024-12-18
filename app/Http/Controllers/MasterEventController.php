@@ -40,17 +40,28 @@ class MasterEventController extends Controller
                 'tags' => 'nullable|string',
                 'organizer_id' => 'required|exists:organizers,id',
                 'event_category_id' => 'required|exists:event_categories,id',
+                'image_banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
-            Event::create($request->all());
+            $data = $request->all();
 
-            return redirect()->route('events.index')->with('success', 'Event created successfully.'); 
+            // Proses gambar jika diunggah
+            if ($request->hasFile('image_banner')) {
+                $imageName = time() . '.' . $request->image_banner->extension();
+                $request->image_banner->move(public_path('images'), $imageName);
+                $data['image_banner'] = $imageName; // Simpan nama file ke kolom image_banner
+            }
+
+            Event::create($data);
+
+            return redirect()->route('events.index')->with('success', 'Event created successfully.');
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Failed to create event.');
         }
     }
+
 
     public function show(Event $event)
     {
@@ -77,17 +88,33 @@ class MasterEventController extends Controller
                 'tags' => 'nullable|string',
                 'organizer_id' => 'required|exists:organizers,id',
                 'event_category_id' => 'required|exists:event_categories,id',
+                'image_banner' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
-            $event->update($request->all());
+            $data = $request->all();
 
-            return redirect()->route('events.index')->with('success', 'Event updated successfully.'); 
+            // Proses gambar jika diunggah
+            if ($request->hasFile('image_banner')) {
+                // Hapus gambar lama jika ada
+                if ($event->image_banner && file_exists(public_path('images/' . $event->image_banner))) {
+                    unlink(public_path('images/' . $event->image_banner));
+                }
+
+                $imageName = time() . '.' . $request->image_banner->extension();
+                $request->image_banner->move(public_path('images'), $imageName);
+                $data['image_banner'] = $imageName; // Simpan nama file ke kolom image_banner
+            }
+
+            $event->update($data);
+
+            return redirect()->route('events.index')->with('success', 'Event updated successfully.');
 
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Failed to update event.');
         }
     }
+
 
     public function destroy(Event $event)
     {

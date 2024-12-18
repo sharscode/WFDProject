@@ -5,6 +5,12 @@
         <h1>Event Detail</h1>
         <div class="card">
             <div class="card-body">
+                 <!-- Gambar di bagian atas kartu -->
+                 @if ($event->image)
+                    <img src="{{ $event->image_banner ? asset('images/' . $event->image_banner) : asset('images/default.jpg') }}" alt="{{ $event->title }}" style="width: 100px; height: auto;">
+                @else
+                    <img src="{{ asset('images/default.jpg') }}" class="card-img-top" alt="Default Image" style="height: 200px; object-fit: cover;">
+                @endif
                 <h5 class="card-title">{{ $event->title }}</h5>
                 <p class="card-text">
                     <strong>Venue:</strong> {{ $event->venue }}<br>

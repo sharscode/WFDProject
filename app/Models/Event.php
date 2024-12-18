@@ -19,6 +19,7 @@ class Event extends Model
         'tags',
         'organizer_id',
         'event_category_id',
+        'image_banner',
     ];
 
     public function organizer()

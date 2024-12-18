@@ -15,5 +15,4 @@ class EventController extends Controller
 
         return view('events.index', compact('events')); 
     }
-
 }

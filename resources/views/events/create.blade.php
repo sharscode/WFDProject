@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1>Create Event</h1>
+        <h1>Create Event</h1>        
+    
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -14,8 +15,13 @@
             </div>
         @endif 
 
+
         <form action="{{ route('events.store') }}" method="POST"> 
             @csrf
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image</label>
+                 <input type="file" class="form-control" id="image_banner" name="image_banner" required>
+            </div>
             <div class="mb-3">
                 <label for="title" class="form-label">Event Name</label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required> 
